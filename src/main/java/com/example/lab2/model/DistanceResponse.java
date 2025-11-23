@@ -1,12 +1,13 @@
 package com.example.lab2.model;
 
-import java.math.BigDecimal;
+public class DistanceResponse 
+{
+    private double distance;
 
-public class DistanceResponse {
-    private BigDecimal distance;
+    public DistanceResponse() {}
+    public DistanceResponse(double distance) {this.distance = distance;}
 
-    public DistanceResponse(BigDecimal distance) {this.distance = distance;}
-    
-    public BigDecimal getDistance() {return distance;}
+    public double getDistance() {return distance;}
+    public void setDistance(double distance) {this.distance = distance;}
 }
 
