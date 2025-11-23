@@ -2,19 +2,11 @@ spring:
   application:
     name: lab2
 
-  datasource:
-    url: jdbc:postgresql://localhost:5432/web_lab_2  
-    username: postgres
-    password: pass7001 
-
-  jpa:
-    hibernate:
-      ddl-auto: validate 
-    show-sql: true
-
-  liquibase:
-    enabled: true
-    change-log: classpath:db/changelog/changelog.yaml
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, metrics
 
 server:
   port: 8080
