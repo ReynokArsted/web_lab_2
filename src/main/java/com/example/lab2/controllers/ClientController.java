@@ -19,25 +19,20 @@ public class ClientController {
     }
 
     @PostMapping("/distance")
-    public Mono<DistanceResponse> getDistance(
-        @RequestHeader("Authorization") String token,
-        @RequestBody DistanceRequest req) 
+    public Mono<DistanceResponse> getDistance(@RequestBody DistanceRequest req) 
     {
         return client.compute
         (  
             req.getX1(),
             req.getY1(),
             req.getX2(),
-            req.getY2(),
-            token
+            req.getY2()
         );
     }
 
     @PostMapping("/distances")
-    public Flux<DistanceResponse> getDistances(
-        @RequestHeader("Authorization") String token, 
-        @RequestBody List<DistanceRequest> reqs) 
+    public Flux<DistanceResponse> getDistances(@RequestBody List<DistanceRequest> reqs) 
     {
-        return client.computes(reqs, token);
+        return client.computes(reqs);
     }
 }

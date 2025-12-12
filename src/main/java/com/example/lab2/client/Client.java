@@ -17,21 +17,19 @@ public class Client {
         this.webClient = webClient;
     }
 
-    public Mono<DistanceResponse> compute(double x1, double y1, double x2, double y2, String token) {
+    public Mono<DistanceResponse> compute(double x1, double y1, double x2, double y2) {
         DistanceRequest request = new DistanceRequest(x1, y1, x2, y2);
         return webClient.post()
                 .uri("/server/distance")
-                .header("Authorization", token)
                 .bodyValue(request)      
                 .retrieve()
                 .bodyToMono(DistanceResponse.class)
                 .retry(3);
     }
 
-    public Flux<DistanceResponse> computes(List<DistanceRequest> requests, String token) {
+    public Flux<DistanceResponse> computes(List<DistanceRequest> requests) {
         return webClient.post()
                 .uri("/server/distances")
-                .header("Authorization", token)
                 .bodyValue(requests)
                 .retrieve()
                 .bodyToFlux(DistanceResponse.class)
